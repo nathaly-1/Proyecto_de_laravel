@@ -7,11 +7,15 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 /**
  * Class User
- * 
+ *
  * @property int $id
  * @property string $name
  * @property string $email
@@ -23,24 +27,43 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class User extends Model
+class User extends Authenticatable
 {
-	protected $table = 'users';
+    use HasApiTokens, HasFactory, Notifiable;
 
-	protected $casts = [
-		'email_verified_at' => 'datetime'
-	];
 
-	protected $hidden = [
-		'password',
-		'remember_token'
-	];
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'id_rol' => 'int'
+    ];
 
-	protected $fillable = [
-		'name',
-		'email',
-		'email_verified_at',
-		'password',
-		'remember_token'
-	];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $fillable = [
+        'name',
+        'email',
+        'email_verified_at',
+        'password',
+        'remember_token',
+        'id_rol'
+    ];
+
+    public function rol()
+    {
+        return $this->belongsTo(Rol::class, 'id_rol');
+    }
+
+    public function carrito_tds()
+    {
+        return $this->hasMany(CarritoTd::class, 'id_usuario');
+    }
+
+    public function venta()
+    {
+        return $this->hasMany(Ventum::class, 'id_usuario');
+    }
 }

@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $cantidad
  * 
  * @property Componente $componente
- * @property Usuario $usuario
+ * @property User $user
  *
  * @package App\Models
  */
@@ -43,8 +43,8 @@ class CarritoTd extends Model
 		return $this->belongsTo(Componente::class, 'clave_componente');
 	}
 
-	public function usuario()
+	public function user()
 	{
-		return $this->belongsTo(Usuario::class, 'id_usuario');
+		return $this->belongsTo(User::class, 'id_usuario');
 	}
 }

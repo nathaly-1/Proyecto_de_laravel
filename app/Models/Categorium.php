@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id_categoria
  * @property string $nombre_categoria
  * @property string $descripcion_categoria
+ * @property string|null $image_cat
  * @property bool $status_categoria
  * 
  * @property Collection|CaracteristicasPCategorium[] $caracteristicas_p_categoria
@@ -35,6 +36,7 @@ class Categorium extends Model
 	protected $fillable = [
 		'nombre_categoria',
 		'descripcion_categoria',
+		'image_cat',
 		'status_categoria'
 	];
 

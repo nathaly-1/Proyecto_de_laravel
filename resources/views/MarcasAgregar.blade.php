@@ -6,12 +6,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Productos</h1>
+                    <h1>Marcas</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Productos</li>
+                        <li class="breadcrumb-item active">Marcas</li>
                     </ol>
                 </div>
             </div>
@@ -23,7 +23,7 @@
         <!-- Default box -->
         <div class="card card-solid">
             <div class="card-body ">
-                <form action="crearmarca" method="POST">
+                <form action="{{route('crearmarca')}}" method="POST">
                     @csrf
                     <div class="form-label">
                         <label for="nombre_marca">Nombre de la marca:</label>

@@ -12,18 +12,18 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Rol
  * 
- * @property int $idRol
+ * @property int $id_rol
  * @property string $rol
  * @property string|null $descripcion
  * 
- * @property Collection|Empleado[] $empleados
+ * @property Collection|User[] $users
  *
  * @package App\Models
  */
 class Rol extends Model
 {
 	protected $table = 'rol';
-	protected $primaryKey = 'idRol';
+	protected $primaryKey = 'id_rol';
 	public $timestamps = false;
 
 	protected $fillable = [
@@ -31,8 +31,8 @@ class Rol extends Model
 		'descripcion'
 	];
 
-	public function empleados()
+	public function users()
 	{
-		return $this->hasMany(Empleado::class, 'id_rol');
+		return $this->hasMany(User::class, 'id_rol');
 	}
 }

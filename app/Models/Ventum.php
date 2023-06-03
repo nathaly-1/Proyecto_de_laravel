@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id_usuario
  * @property float $total_venta
  * 
- * @property Usuario $usuario
+ * @property User $user
  * @property Collection|DetalleVentum[] $detalle_venta
  *
  * @package App\Models
@@ -42,9 +42,9 @@ class Ventum extends Model
 		'total_venta'
 	];
 
-	public function usuario()
+	public function user()
 	{
-		return $this->belongsTo(Usuario::class, 'id_usuario');
+		return $this->belongsTo(User::class, 'id_usuario');
 	}
 
 	public function detalle_venta()

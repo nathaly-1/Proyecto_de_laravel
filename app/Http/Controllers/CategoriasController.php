@@ -24,8 +24,12 @@ class CategoriasController extends Controller{
         $categoria->status_categoria = $request->has('status_categoria') ? 1 : 0;
         $categoria->save();
 
-        // Puedes redirigir a una ruta específica o realizar alguna acción adicional aquí
         return view('paginas.paginas');
+    }
+    public function editar($id)
+    {
+        $categoria = Categorium::find($id);
+        return view('CategoriasEdit', ['categoria'=>$categoria]);
     }
 }
 

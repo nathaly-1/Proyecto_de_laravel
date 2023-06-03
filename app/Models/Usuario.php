@@ -6,7 +6,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -16,10 +15,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $usuario
  * @property string $pasword1
  * @property int $n_empleado
- * 
- * @property Empleado $empleado
- * @property Collection|CarritoTd[] $carrito_tds
- * @property Collection|Ventum[] $venta
  *
  * @package App\Models
  */
@@ -38,19 +33,4 @@ class Usuario extends Model
 		'pasword1',
 		'n_empleado'
 	];
-
-	public function empleado()
-	{
-		return $this->belongsTo(Empleado::class, 'n_empleado');
-	}
-
-	public function carrito_tds()
-	{
-		return $this->hasMany(CarritoTd::class, 'id_usuario');
-	}
-
-	public function venta()
-	{
-		return $this->hasMany(Ventum::class, 'id_usuario');
-	}
 }

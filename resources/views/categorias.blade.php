@@ -29,6 +29,7 @@
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Descripcion</th>
+                        <th>Imagen</th>
                         <th>Eliminar</th>
                         <th>Editar</th>
                     </tr>
@@ -37,7 +38,12 @@
                             <td>{{ $categoria->id_categoria }}</td>
                             <td>{{ $categoria->nombre_categoria }}</td>
                             <td>{{ $categoria->descripcion_categoria }}</td>
-
+                            <td>
+                                @php
+                                    $imagen = base64_encode($categoria->image_cat);
+                                @endphp
+                                <img src="data:image/png;base64,{{$imagen}}" alt='Img blob desde MySQL' class="img-fluid" width="100"/>
+                            </td>
                             <td>
 
                                 <form action="{{ route('deletecategoria', ['id'=> $categoria->id_categoria]) }}" method="post">
@@ -47,9 +53,7 @@
                                 </form>
 
                             </td>
-                            <td>
-                                <button class="btn btn-success">Editar</button>
-                            </td>
+                            <td><a href="{{ route('categoriaedit',['id' => $categoria->id_categoria]) }}" class="btn btn-warning">Editar</a></td>
                         </tr>
                     @endforeach
                 </table>

@@ -10,12 +10,12 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class CarritoTd
- * 
+ *
  * @property int $id_carrito
  * @property int $id_usuario
  * @property string $clave_componente
  * @property int $cantidad
- * 
+ *
  * @property Componente $componente
  * @property User $user
  *

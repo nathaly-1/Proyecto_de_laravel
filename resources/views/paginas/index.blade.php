@@ -45,7 +45,7 @@
                     @endif
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="/">Carrito de compra</a>
+                           href="{{route('carrito')}}">Carrito de compra</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

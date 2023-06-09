@@ -42,29 +42,5 @@
             </a>
         </div>
 
-        <div class="card-deck mt-5">
-            <div class="card">
-                <img src="imagen1.jpg" class="card-img-top" alt="Imagen 1">
-                <div class="card-body">
-                    <h5 class="card-title">Título de la Card 1</h5>
-                    <p class="card-text">Contenido de la Card 1.</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="imagen2.jpg" class="card-img-top" alt="Imagen 2">
-                <div class="card-body">
-                    <h5 class="card-title">Título de la Card 2</h5>
-                    <p class="card-text">Contenido de la Card 2.</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="imagen3.jpg" class="card-img-top" alt="Imagen 3">
-                <div class="card-body">
-                    <h5 class="card-title">Título de la Card 3</h5>
-                    <p class="card-text">Contenido de la Card 3.</p>
-                </div>
-            </div>
-        </div>
-
     </div>
 @endsection

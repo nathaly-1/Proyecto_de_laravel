@@ -160,7 +160,7 @@ Route::get('/compa-exitosa', function () {
 
     if ($ultimoFolio) {
         // Obtener el número del último folio y sumarle 1
-        $ultimoNumero = (int) substr($ultimoFolio, -4);
+        $ultimoNumero = (int)substr($ultimoFolio, -4);
         $nuevoNumero = $ultimoNumero + 1;
     } else {
         // Si no hay folios anteriores para la fecha actual, iniciar desde 1
@@ -172,7 +172,7 @@ Route::get('/compa-exitosa', function () {
 
     // Generar el folio de venta concatenando la fecha y el nuevo número
     $folioVenta = $fecha . $nuevoNumeroFormateado;
-    $venta->folio_venta=$folioVenta;
+    $venta->folio_venta = $folioVenta;
     $venta->fecha_venta = now(); // Fecha actual
     $venta->id_usuario = Auth::user()->id;
     $venta->total_venta = 0;
@@ -186,10 +186,14 @@ Route::get('/compa-exitosa', function () {
         $detalleVenta->cantidad_componente = $carrito->cantidad;
 
         // Obtener el componente correspondiente al carrito
-        $componente = Componente::find($carrito->clave_componente);
+        $componente = Componente::findOrFail($carrito->clave_componente);
 
         // Calcular el precio de venta basado en el precio del componente y la cantidad
         $precioVenta = $componente->precio_actual_componente * $carrito->cantidad;
+
+        $componente->existencia_componente = $componente->existencia_componente - $carrito->cantidad;
+        $componente->save();
+
         $detalleVenta->precio_venta = $precioVenta;
 
         $detalleVenta->save();
@@ -202,7 +206,7 @@ Route::get('/compa-exitosa', function () {
     $venta->save();
     $detalleVentaList = DetalleVentum::where('folio_venta', $venta->folio_venta)->get();
 
-    //CarritoTd::where('id_usuario', Auth::user()->id)->delete();
+    CarritoTd::where('id_usuario', Auth::user()->id)->delete();
 
     return view('products.LcompraE', ['detalleVentaList'=>$detalleVentaList, 'id_v'=>$venta->folio_venta]);
 })->name('compa-exitosa');

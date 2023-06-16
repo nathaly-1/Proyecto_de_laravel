@@ -1,5 +1,6 @@
 @extends('plantilla')
 @section('principal')
+
     <div class="content-wrapper" style="min-height: 2646.71px;">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -23,21 +24,21 @@
             <!-- Default box -->
             <div class="card card-solid">
                 <div class="card-body ">
-                    <form action="{{route('crearmarca')}}" method="POST">
+                    <form action="{{ route('editmarca') }}" method="POST">
                         @csrf
-                        <div class="form-label">
-                            <label for="nombre_marca">Nombre de la marca:</label>
-                            <input type="text" class="form-control" id="nombre_marca" name="nombre_marca"
-                                   placeholder="Nombre de la marca" required>
+                        <div class="mb-3">
+                            <label for="id_marca" class="form-label">ID de la marca</label>
+                            <input type="text" class="form-control" id="id_marca" name="id_marca" value="{{ $marca->id_marca }}" readonly required>
                         </div>
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="status" name="status"
-                                       value="Activo">
-                                <label class="form-check-label" for="status">Activo</label>
-                            </div>
+                        <div class="mb-3">
+                            <label for="nombre_marca" class="form-label">Nombre de la marca</label>
+                            <input type="text" class="form-control" id="nombre_marca" name="nombre_marca" value="{{ $marca->nombre_marca }}"  required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Agregar Marca</button>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="estatus" name="estatus" {{ $marca->status ? 'checked' : '' }}>
+                            <label class="form-check-label" for="estatus">Activo</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
                     </form>
                 </div>
                 <!-- /.card-body -->
@@ -47,4 +48,3 @@
         <!-- /.content -->
     </div>
 @endsection
-

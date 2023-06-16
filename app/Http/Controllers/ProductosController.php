@@ -24,7 +24,6 @@ class ProductosController extends Controller
     }
     public function eliminar($id)
     {
-        $action='eliminar';
         $componente = Componente::find($id);
         $componente->delete();
 
@@ -34,6 +33,6 @@ class ProductosController extends Controller
     public function editar($id)
     {
         $componente = Componente::find($id);
-        return view('PanelAdm.ComponentesUD', ['componente'=>$componente]);
+        return view('Productos', ['componente'=>$componente]);
     }
 }

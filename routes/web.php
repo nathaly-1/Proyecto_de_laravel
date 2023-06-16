@@ -55,6 +55,15 @@ Route::get('/agregarmarca', function () {
 
 Route::post('/crearmarca', [\App\Http\Controllers\MarcasController::class, 'store'])->name('crearmarca');
 
+Route::get('/marcaedit/{id}', [\App\Http\Controllers\MarcasController::class, 'editar'])->name('marcaedit');
+Route::post('/editmarca', function (Illuminate\Http\Request $request) {
+    $marca = Marca::findOrFail($request->input('id_marca'));
+    $marca->nombre_marca = $request->input('nombre_marca');
+    $marca->status = $request->has('estatus');
+    $marca->save();
+
+    return redirect()->route('marcas');
+})->name('editmarca');
 
 //Categorias
 Route::delete('/deletecategoria/{id}', [\App\Http\Controllers\CategoriasController::class, 'eliminar'])->name('deletecategoria');

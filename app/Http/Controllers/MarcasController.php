@@ -26,5 +26,12 @@ class MarcasController extends Controller{
         // Puedes redirigir a una ruta específica o realizar alguna acción adicional aquí
         return view('paginas.paginas');
     }
+
+    public function editar($id)
+    {
+        $marca = Marca::find($id);
+        return view('MarcasActualizar', ['marca'=>$marca]);
+    }
+
 }
 

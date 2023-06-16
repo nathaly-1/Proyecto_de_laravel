@@ -52,16 +52,22 @@
                                     @php
                                         $imagen = base64_encode($componente->imagen);
                                     @endphp
-                                    <img src="data:image/png;base64,{{$imagen}}" alt='Img blob desde MySQL' class="img-fluid" width="100"/>
+                                    <img src="data:image/png;base64,{{$imagen}}" alt='Img blob desde MySQL'
+                                         class="img-fluid" width="100"/>
                                 </td>
                                 <td>
-                                    <form action="{{ route('productoborrar', ['id' => $componente->clave_componente]) }}" method="POST">
+                                    <form
+                                        action="{{ route('productoborrar', ['id' => $componente->clave_componente]) }}"
+                                        method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Borrar</button>
                                     </form>
-                                    <a href="/" class="btn btn-warning">Editar</a>
+
+                                    <a href="{{ route('productoedit',['id' => $componente->clave_componente]) }}"
+                                       class="btn btn-warning">Editar</a>
                                 </td>
+
                             </tr>
                         @endforeach
                         </tbody>

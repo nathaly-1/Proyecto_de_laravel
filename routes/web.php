@@ -78,7 +78,22 @@ Route::get('/agregarcategoria', function () {
     return view('CategoriasAgregar');
 })->name('agregarcategoria');
 
-Route::post('/crearcategoria', [\App\Http\Controllers\CategoriasController::class, 'store'])->name('crearcategoria');
+Route::post('/crearcategoria', [\App\Http\Controllers\CategoriasController::class,
+    function (Illuminate\Http\Request $request) {
+
+        $imagen = $request->file('imagen');
+        $imagenBlob = $imagen->getContent();
+
+        $categoria = new Categorium();
+        $categoria->nombre_categoria = $request->input('nombre_categoria');
+        $categoria->descripcion_categoria = $request->input('descripcion_categoria');
+        $categoria->status_categoria = $request->has('status_categoria') ? 1 : 0;
+        $categoria->image_cat = $imagenBlob;
+        $categoria->save();
+
+        return view('paginas.paginas');
+    }
+])->name('crearcategoria');
 
 //edit
 Route::get('/categoriaedit/{id}', [\App\Http\Controllers\CategoriasController::class, 'editar'])->name('categoriaedit');
@@ -142,16 +157,27 @@ Route::delete('/productoborrar/{id}', [\App\Http\Controllers\ProductosController
 //edit componentes
 Route::get('/productoedit/{id}', [\App\Http\Controllers\ProductosController::class, 'editar'])->name('productoedit');
 
-Route::post('/editpro
+Route::post('/editproducto', function (Illuminate\Http\Request $request) {
+    if (!$request->has('clave_componente')) {
+        return redirect()->back()->withInput()->withErrors(['La clave del componente es requerida']);
+    }
+    $imagen = $request->file('imagen');
+    $imagenBlob = file_get_contents($imagen);
 
-ducto', function (Illuminate\Http\Request $request) {
-    $componente = Componente::findOrFail($request->input('id_componente'));
+    $componente = Componente::findOrFail($request->input('clave_componente'));
     $componente->nombre_componente = $request->input('nombre_componente');
     $componente->descripcion_componente = $request->input('descripcion_componente');
-    $componente->status_componente = $request->has('estatus');
+    $componente->precio_actual_componente = $request->input('precio_actual_componente');
+    $componente->existencia_componente = $request->input('existencia_componente');
+    $componente->stock_min_componente = $request->input('stock_min_componente');
+    $componente->stock_max_componente = $request->input('stock_max_componente');
+    $componente->id_ct_marca = $request->input('id_ct_marca');
+    $componente->id_categoria = $request->input('id_categoria');
+    $componente->descuento_componente = $request->input('descuento_componente');
+    $componente->imagen = $imagenBlob;
     $componente->save();
 
-    return view('PanelAdm.Susses', ['tipo' => 'marca', 'action' => 'editar', 'marca' => $componente]);
+    return redirect()->route('productos');
 })->name('editproducto');
 
 //CARRITOTD
@@ -217,7 +243,7 @@ Route::get('/compa-exitosa', function () {
 
     CarritoTd::where('id_usuario', Auth::user()->id)->delete();
 
-    return view('products.LcompraE', ['detalleVentaList'=>$detalleVentaList, 'id_v'=>$venta->folio_venta]);
+    return view('products.LcompraE', ['detalleVentaList' => $detalleVentaList, 'id_v' => $venta->folio_venta]);
 })->name('compa-exitosa');
 
 Route::get('/catalogo', [\App\Http\Controllers\HomeController::class, 'index'])->name('catalogo');

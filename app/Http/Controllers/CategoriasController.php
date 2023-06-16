@@ -18,10 +18,14 @@ class CategoriasController extends Controller{
     }
     public function store(Request $request)
     {
+        $imagen = $request->file('imagen');
+        $imagenBlob = file_get_contents($imagen);
+
         $categoria = new Categorium();
         $categoria->nombre_categoria = $request->input('nombre_categoria');
         $categoria->descripcion_categoria = $request->input('descripcion_categoria');
         $categoria->status_categoria = $request->has('status_categoria') ? 1 : 0;
+        $categoria->image_cat = $imagenBlob;
         $categoria->save();
 
         return view('paginas.paginas');

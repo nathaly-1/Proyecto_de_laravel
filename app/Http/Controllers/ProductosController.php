@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorium;
 use App\Models\Componente;
+use App\Models\Marca;
 use Illuminate\Http\Request;
 
 class ProductosController extends Controller
@@ -33,6 +35,8 @@ class ProductosController extends Controller
     public function editar($id)
     {
         $componente = Componente::find($id);
-        return view('Productos', ['componente'=>$componente]);
+        $marcas=Marca::all();
+        $categorias=Categorium::all();
+        return view('ProductosEditar', ['componente'=>$componente, 'categorias'=>$categorias, 'marcas'=>$marcas]);
     }
 }

@@ -23,15 +23,19 @@
         <!-- Default box -->
         <div class="card card-solid">
             <div class="card-body ">
-                <form action="{{route('crearcategoria')}}" method="POST">
+                <form action="{{route('crearcategoria')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-label">
                         <label for="nombre_marca">Nombre de la categoria:</label>
-                        <input type="text" class="form-control" id="nombre_categoria" name="nombre_categoria" placeholder="Nombre de la categoria">
+                        <input type="text" class="form-control" id="nombre_categoria" name="nombre_categoria" placeholder="Nombre de la categoria" required>
                     </div>
                     <div class="form-label">
                         <label for="nombre_marca">Descripcion de la categoria:</label>
-                        <input type="text" class="form-control" id="descripcion_categoria" name="descripcion_categoria" placeholder="Descripcion de la categoria">
+                        <input type="text" class="form-control" id="descripcion_categoria" name="descripcion_categoria" placeholder="Descripcion de la categoria" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="imagen" class="form-label">Imagen del categoria</label>
+                        <input type="file" class="form-control" id="imagen" name="imagen" required>
                     </div>
                     <div class="form-group">
                         <div class="form-check">

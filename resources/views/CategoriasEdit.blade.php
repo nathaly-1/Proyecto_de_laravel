@@ -26,19 +26,19 @@
                     <form action="{{ route('editcategoria') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <label for="id_categoria" class="form-label">ID de la marca</label>
+                            <label for="id_categoria" class="form-label">ID de la categoria</label>
                             <input type="text" class="form-control" id="id_categoria" name="id_categoria" value="{{ $categoria->id_categoria }}" readonly required>
                         </div>
                         <div class="mb-3">
-                            <label for="nombre_categoria" class="form-label">Nombre de la marca</label>
+                            <label for="nombre_categoria" class="form-label">Nombre de la categoria</label>
                             <input type="text" class="form-control" id="nombre_categoria" name="nombre_categoria" value="{{ $categoria->nombre_categoria }}"  required>
                         </div>
                         <div class="mb-3">
-                            <label for="descripcion_categoria" class="form-label">descripcion de la marca</label>
+                            <label for="descripcion_categoria" class="form-label">descripcion de la categoria</label>
                             <textarea class="form-control" id="descripcion_categoria" name="descripcion_categoria" required>{{ $categoria->descripcion_categoria }}</textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="imagen" class="form-label">Imagen del componente</label>
+                            <label for="imagen" class="form-label">Imagen del categoria</label>
                             <input type="file" class="form-control" id="imagen" name="imagen" required>
                         </div>
                         <div class="mb-3 form-check">

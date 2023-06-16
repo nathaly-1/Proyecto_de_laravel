@@ -84,7 +84,7 @@ Route::post('/crearcategoria', [\App\Http\Controllers\CategoriasController::clas
 Route::get('/categoriaedit/{id}', [\App\Http\Controllers\CategoriasController::class, 'editar'])->name('categoriaedit');
 
 Route::post('/editcategoria', function (Illuminate\Http\Request $request) {
-    $categoria = App\Models\Categorium::findOrFail($request->input('id_categoria'));
+    $categoria = Categorium::findOrFail($request->input('id_categoria'));
 
     $imagen = $request->file('imagen');
     $imagenBlob = $imagen->getContent();

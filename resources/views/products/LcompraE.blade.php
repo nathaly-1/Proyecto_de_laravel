@@ -25,6 +25,9 @@
                 </tr>
                 </thead>
                 <tbody>
+                <?php
+                $total = 0;
+                ?>
                 @foreach($detalleVentaList as $detalle)
                     <tr>
                         <td>{{ $detalle->componente->nombre_componente }}</td>
@@ -32,7 +35,14 @@
                         <td>{{ $detalle->componente->precio_actual_componente }}</td>
                         <td>{{ $detalle->precio_venta }}</td>
                     </tr>
+                        <?php
+                        $total += $detalle->cantidad_componente * $detalle->componente->precio_actual_componente; // Actualizar el total
+                        ?>
                 @endforeach
+                <tr>
+                    <td colspan="3" class="text-right"><strong>Total:</strong></td>
+                    <td class="text-center">${{ $total }}</td>
+                </tr>
                 </tbody>
             </table>
         </div>
